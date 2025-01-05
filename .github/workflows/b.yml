@@ -5,5 +5,12 @@ jobs:
   get-runs:
     runs-on: ubuntu-latest
     steps:
-      - name: just ls
-        run: ls
+      - name: artifact
+        run: echo lalal >file
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-file-${{ github.sha }}
+          path: file
+          retention-days: 5  # Od 1 do 90 dni
