@@ -1,24 +1,14 @@
-name: Manual Two Jobs
+name: File Operations
 on:
-  # Trigger na push
   push:
     branches:
-      - main  # lub twój główny branch
-  # Trigger manualny
+      - main
   workflow_dispatch:
-    inputs:
-      job_to_run:
-        description: 'Select job to run'
-        required: true
-        default: 'read'
-        type: choice
-        options:
-          - read
 
 jobs:
   create_file:
-    # Uruchom tylko na push
-    if: ${{ github.event_name == 'push' }}
+    # Zawsze uruchamiaj na push
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Create file
@@ -31,8 +21,8 @@ jobs:
           path: message.txt
 
   read_file:
-    # Uruchom tylko na workflow_dispatch
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    # Zawsze uruchamiaj na workflow_dispatch
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
