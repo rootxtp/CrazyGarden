@@ -5,10 +5,9 @@ jobs:
   apply:
     runs-on: ubuntu-latest
     steps:
-      - name: set variable
+      - name: Get workflow runs
         env:
           COMMIT_SHA: ${{ github.sha }}
-      - name: Get workflow runs
         run: |
           WORKFLOW_ID=$(curl -L \
             -H "Accept: application/vnd.github+json" \
