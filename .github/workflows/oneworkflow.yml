@@ -9,10 +9,11 @@ on:
         options:
           - create
           - read
+  push:  # Dodane automatyczne uruchomienie na push
 
 jobs:
   create_file:
-    if: github.event.inputs.job_to_run == 'create'
+    if: github.event_name == 'push' || github.event.inputs.job_to_run == 'create'
     runs-on: ubuntu-latest
     steps:
       - name: Create file
