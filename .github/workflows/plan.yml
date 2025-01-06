@@ -13,4 +13,4 @@ jobs:
         with:
           name: my-file-${{ github.sha }}
           path: file
-          retention-days: 5  # Od 1 do 90 dni
+          retention-days: 1
