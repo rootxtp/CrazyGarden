@@ -1,8 +1,8 @@
-name: apply
+name: apply2
 on: workflow_dispatch
 
 jobs:
-  get-runs:
+  apply:
     runs-on: ubuntu-latest
     steps:
       - name: set variable
@@ -16,6 +16,5 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             "https://api.github.com/repos/${{ github.repository }}/actions/runs" \
             | jq -r --arg commit "$COMMIT_SHA" '.workflow_runs[] | select(.head_sha == $commit and .path == ".github/workflows/plan.yml").workflow_id')
-            
       - name: print workflow id 
         run: echo $WORKFLOW_ID
