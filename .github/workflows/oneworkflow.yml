@@ -7,13 +7,12 @@ on:
         required: true
         type: choice
         options:
-          - create
           - read
-  push:  # Dodane automatyczne uruchomienie na push
+  push:  # Automatyczne uruchomienie create na push
 
 jobs:
   create_file:
-    if: github.event_name == 'push' || github.event.inputs.job_to_run == 'create'
+    if: github.event_name == 'push'  # Tylko na push
     runs-on: ubuntu-latest
     steps:
       - name: Create file
@@ -26,7 +25,7 @@ jobs:
           path: message.txt
 
   read_file:
-    if: github.event.inputs.job_to_run == 'read'
+    if: github.event.inputs.job_to_run == 'read'  # Tylko manualnie
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
